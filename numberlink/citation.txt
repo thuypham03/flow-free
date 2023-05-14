@@ -1,0 +1,11 @@
+https://github.com/thomasahle/numberlink 
+Again, everything in the numberlink folder is from the source link above 
+(except the file gen_json.py which was written by Thuy)
+We refer to this code for generating a random board (called in generate.ml) and 
+this is the only code in our project that is from an outside source. 
+It is in Python and does not count towards our lines of code. We do not 
+claim this code to be ours in any way and only use it to enhance the 
+enjoyment of our game.
+
+Ahle, Thomas Dybdahl, September 21, 2021 Numberlink [Source code]. 
+https://github.com/thomasahle/numberlink

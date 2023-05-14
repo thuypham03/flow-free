@@ -1,0 +1,3 @@
+(library
+ (name visuals)
+ (libraries project ANSITerminal graphics))
