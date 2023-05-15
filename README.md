@@ -8,7 +8,7 @@
 ## CITATIONS
 https://github.com/thomasahle/numberlink 
 Everything in the ``numberlink`` folder is from the source link above by Thomas Dybdahl Ahle (see more in numberlink/citation.txt) (except the file ``gen_json.py`` which was written by Thuy)
-We refer to this code for generating a random board and this is the only code in our project that is from an outside source. It is in Python and does not count towards our lines of code. **We do not claim this code to be ours in any way and only use it to enhance the enjoyment of our game.**
+We refer to this code for generating a random board and this is the only code in our project that is from an outside source. It is in Python and does not count towards our lines of code. ****We do not claim this code to be ours in any way and only use it to enhance the enjoyment of our game.****
 
 ## About
 Our project implements the mobile game FlowFree. It is a pipe connecting game where the goal is to connect together p pipes (of p different colors). On a square grid of board size n x n, there will be 2p nodes, 2 of each of p colors. We connect the same color circles to create a pipe. The board is solved and complete when the entire board is covered, there are no overlapping pipes, and the pipes are all valid (made using valid moves, no going outside the board).
@@ -33,9 +33,9 @@ d. Drag and drop the downloaded submission zip file into folder FlowMS3 by the m
 
 e. Open the zip file in the folder FlowMS3 by running ``unzip ms3_code.zip``
 
-This will extract our submission code into a folder directory named ``ms3_code``. Now run: ``cd ms3_code`` to access this directory.
+This will extract our submission code into a folder directory named ``FlowMS3``
 
-f. You are now in the ``ms3_code`` directory. From here you will be able to run the "make" commands.
+f. You are now in the ``FlowMS3`` directory. From here you will be able to run the "make" commands.
 
 g. Run ``make build``
 

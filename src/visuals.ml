@@ -10,6 +10,9 @@ let hard = Graphics.rgb 225 102 102
 let drawing_color = Graphics.rgb 107 69 69
 let line_width = 2
 
+(* raise [InvalidMode] if the board is not in a valid difficulty. *)
+exception InvalidMode
+
 type mode =
   | EASY
   | MEDIUM
@@ -164,6 +167,13 @@ let rec get_mode () : mode =
 let get_rand_number (n : int) : int =
   int_of_float (Unix.gettimeofday () *. 1000.) mod n
 
+(* [get_mode_num size] provides the difficulty mode given a board [size]. *)
+let get_mode_num (size : int) : int =
+  if size >= 5 && size <= 8 then 5 + get_rand_number 4
+  else if size >= 9 && size <= 12 then 9 + get_rand_number 4
+  else if size >= 13 && size <= 15 then 13 + get_rand_number 3
+  else raise InvalidMode
+
 let welcome_screen : board =
   Graphics.open_graph "";
   (* Open graph for welcome screen. *)
@@ -222,6 +232,13 @@ let welcome_screen : board =
   | MEDIUM -> Generate.generate (9 + get_rand_number 4)
   | HARD -> Generate.generate (13 + get_rand_number 3)
 
+let add_play_again_button () =
+  Graphics.set_color (Graphics.rgb 0 153 0);
+  Graphics.fill_rect 700 765 77 20;
+  Graphics.set_color Graphics.white;
+  Graphics.moveto 710 770;
+  Graphics.draw_string "play again"
+
 let add_solution_button () =
   Graphics.set_color hard;
   Graphics.fill_rect 36 10 95 20;
@@ -252,6 +269,7 @@ let graph_init () =
   add_grid board.size;
   add_pipes board;
   add_solution_button ();
+  add_play_again_button ();
   board
 
 let graph_init_text (board : board) =
@@ -286,8 +304,16 @@ let rec play (board : board) =
           Graphics.set_color Graphics.white;
           Graphics.moveto 45 15;
           Graphics.draw_string "view solution";
+          add_play_again_button ();
           let solution = Generate.get_solution () in
           solution)
+        else if x >= 700 && x <= 777 && y >= 765 && y <= 785 then (
+          let mode = get_mode_num board.size in
+          let new_board = Generate.generate mode in
+          clear new_board;
+          add_play_again_button ();
+          add_solution_button ();
+          new_board)
         else
           let space =
             (Graphics.size_x () / board.size) - (2 * buffer / board.size)
@@ -299,6 +325,7 @@ let rec play (board : board) =
             let new_board2 = State.clear_pipe board in
             clear (State.start new_board2 (h, v));
             add_solution_button ();
+            add_play_again_button ();
             State.start new_board2 (h, v))
           else State.start board (h, v)
         (*if button L R U D was pressed, call state with that movement *)
@@ -312,10 +339,12 @@ let rec play (board : board) =
             let empty = State.clear_board board in
             clear empty;
             add_solution_button ();
+            add_play_again_button ();
             empty
         | _ -> board
       else (
         add_solution_button ();
+        add_play_again_button ();
         board)
     with e -> board
   in

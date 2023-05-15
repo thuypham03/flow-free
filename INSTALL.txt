@@ -19,11 +19,9 @@ Once you have this installed, it's time to run our game!
   e. Open the zip file in the folder FlowMS3 by running 
     [unzip ms3_code.zip]
 
-  This will extract our submission code into a folder directory named ms3_code. Now run:
-    [cd ms3_code]
-  to access this directory.
+  This will extract our submission code into a folder directory named FlowMS3.
 
-  f. You are now in the ms3_code directory. From here you will be able to run the "make" commands.
+  f. You are now in the FlowMS3 directory. From here you will be able to run the "make" commands.
 
   g. Run
   [make build]
